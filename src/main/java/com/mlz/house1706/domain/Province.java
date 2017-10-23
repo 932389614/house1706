@@ -3,16 +3,17 @@ package com.mlz.house1706.domain;
 import java.io.Serializable;
 
 import javax.persistence.*;
+
 @Entity
-@Table(name="tb_province")
+@Table(name = "tb_province")
 public class Province implements Serializable {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="provid")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "provid")
 	private Integer id;
-	@Column(name="provname",nullable=false)
+	@Column(name = "provname")
 	private String name;
-	
+
 	public Province() {
 	}
 

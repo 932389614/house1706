@@ -4,37 +4,46 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Í¨ÓÃµÄÊý¾Ý·ÃÎÊ½Ó¿Ú
+ * Í¨ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ý·ï¿½ï¿½Ê½Ó¿ï¿½
+ * 
  * @author Administrator
  *
- * @param <E>Êý¾ÝÊµÌåÀàÐÍ
- * @param <K>±êÊ¶×Ö¶ÎÀàÐÍ
+ * @param <E>ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param <K>ï¿½ï¿½Ê¶ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½
  */
-public interface BaseDao <E,K extends Serializable>{
+public interface BaseDao<E, K extends Serializable> {
 	/**
-	 * ±£´æ
+	 * ï¿½ï¿½ï¿½ï¿½
+	 * 
 	 * @return
 	 */
 	K save(E entity);
+
 	/**
-	 * É¾³ý
+	 * É¾ï¿½ï¿½
+	 * 
 	 * @return
 	 */
 	boolean deleteById(K id);
+
 	/**
-	 * ¸üÐÂ
+	 * ï¿½ï¿½ï¿½ï¿½
+	 * 
 	 * @return
 	 */
 	E update(E entity);
+
 	/**
-	 * ²éÑ¯
+	 * ï¿½ï¿½Ñ¯
+	 * 
 	 * @param id
 	 * @return
 	 */
 	E findById(K id);
 
 	/**
-	 * ²éÑ¯ËùÓÐ
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+	 * 
 	 * @return
 	 */
 	List<E> findAll();
