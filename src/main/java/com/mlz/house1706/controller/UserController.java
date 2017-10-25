@@ -19,24 +19,34 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HttpSessionMutexListener;
 
+import com.mlz.house1706.domain.House;
 import com.mlz.house1706.domain.User;
 import com.mlz.house1706.dto.CheckResultDto;
 import com.mlz.house1706.dto.UserLoginDto;
+import com.mlz.house1706.service.HouseService;
 import com.mlz.house1706.service.UserService;
 import com.mlz.house1706.util.CommonUtil;
+import com.mlz.house1706.util.PageBean;
 
 @Controller
 public class UserController {
 	private static final int CODE_LENGTH = 4;
 	@Autowired
 	private UserService userService;
-
+	@Autowired
+	private HouseService houseService;
 	@GetMapping("/toIndex")
-	public String toIndex() {
+	public String toIndex(@RequestParam(defaultValue="1")int page,@RequestParam
+			(defaultValue="10")int size,Model model) {
+		PageBean<House> hBean=houseService.listHousesByPage(page, size);
+		model.addAttribute("houseList", hBean.getDataModel());
+		model.addAttribute("totalPage", hBean.getTotalPage());
+		model.addAttribute("currentPage", hBean.getCurrentPage());
 		return "index";
 	}
 

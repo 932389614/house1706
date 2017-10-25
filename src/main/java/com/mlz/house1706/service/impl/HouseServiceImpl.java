@@ -16,6 +16,7 @@ import com.mlz.house1706.domain.User;
 import com.mlz.house1706.persistence.HouseDao;
 import com.mlz.house1706.persistence.House_TypeDao;
 import com.mlz.house1706.service.HouseService;
+import com.mlz.house1706.util.PageBean;
 
 @Service
 @Transactional
@@ -37,4 +38,11 @@ public class HouseServiceImpl implements HouseService {
 		return houseDao.save(house)!=null;
 	}
 
+	@Override
+	public PageBean<House> listHousesByPage(int page, int size) {
+		
+		return houseDao.findByPage(page, size);
+	}
+
+	
 }

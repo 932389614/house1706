@@ -3,8 +3,7 @@ package com.mlz.house1706.domain;
 import java.io.Serializable;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
 
 import org.apache.commons.codec.digest.DigestUtils;
 

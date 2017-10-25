@@ -1,10 +1,9 @@
-﻿<%@ page pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+锘�
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>高大上租房网 - 首页</title>
+		<title>高大上租房网</title>
 		<link type="text/css" rel="stylesheet" href="css/style.css" />
 		<style type="text/css">
 			#headbar { position: relative; top: 35px; left: 300px; }
@@ -20,21 +19,21 @@
 				<img src="images/logo.png" />
 			</div>
 			<div id="headbar">
-				<c:choose>
-					<c:when test="${not empty sessionScope.userId}">
-						<a href="">${username}</a>&nbsp;&nbsp;
-						<a href="logout">注销</a>
-					</c:when>
-					<c:otherwise>
-						<a href="toLogin">用户登录</a>
-					</c:otherwise>
-				</c:choose>
+
+				<#if userId!=null>
+					<a href="">${username}</a>&nbsp;&nbsp;
+					<a href="logout"></a>
+				</#if>
+				<#if userId!=null>
+					<a href="toLogin">登录</a>
+				</#if>
+
 				<a href="toRegister">快速注册</a>
-				<c:if test="${not empty sessionScope.userId}">
+				<#if userId!=null>
 					<div class="pub">
 						<a href="toPub">发布房源</a>
 					</div>
-				</c:if>
+				</#if>
 			</div>
 		</div>
 		<div id="navbar" class="wrap">
@@ -74,22 +73,23 @@
 							<li>
 								<select name='house.district.id' id='district'>
 									<option value='0'>不限</option>
-									<c:forEach items="${districtList}" var="dis">
+									<#list districtList as dis>
 										<option value='${dis.id}'>${dis.name}</option>
-									</c:forEach>
+									</#list>
 								</select>
 							</li>
 						</ul>
 					</div>
 					<div class="fl">
 						<ul>
-							<li class="first">房型</li>
+							<li class="first">鎴垮瀷</li>
 							<li>
 								<select name='house.house_Type.id' id='houseType'>
-									<option value='0'>不限</option>
-									<c:forEach items="${houseTypeList}" var="houseType">
-									<option value='${houseType.id}'>${houseType.name}</option>
-									</c:forEach>
+									<option value='0'>涓嶉檺</option>
+									<#list houseTypeList as houseType>
+										<option value='${houseType.id}'>涓嶉檺</option>
+									</#list>
+									
 								</select>
 							</li>
 						</ul>
@@ -111,10 +111,10 @@
 					</div>
 				</div>
 			</form>
-		</div>
+		</div>06666666666666
 		<div class="main wrap">
 			<table class="house-list">
-				<c:forEach items="${houseList}" var="house">
+				<#list houseList as house>
 					<tr>
 						<td class="house-thumb">
 							<div>
@@ -138,17 +138,17 @@
 						<td class="house-type">${house.house_Type.name}</td>
 						<td class="house-price"><span>${house.price}</span>元/月</td>
 					</tr>
-				</c:forEach>
+				</#list>
 			</table>
 			<div class="pager">
 				<ul>
 					<li class="current"><a href="toIndex?page=1">首页</a></li>
-					<c:if test="${currentPage > 1}">
+					<#if currentPage gt 1>
 					<li><a href="toIndex?page=${currentPage - 1}">上一页</a></li>
-					</c:if>
-					<c:if test="${currentPage < totalPage}">
+					</#if>
+					<#if currentPage lt totalPage>
 					<li><a href="toIndex?page=${currentPage + 1}">下一页</a></li>
-					</c:if>
+					</#if>
 					<li><a href="toIndex?page=${totalPage}">末页</a></li>
 				</ul>
 				<span class="total">${currentPage}/${totalPage}页</span>

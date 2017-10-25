@@ -99,7 +99,7 @@ public class HouseDaoImpl extends BaseDaoAdapter<House, Integer> implements Hous
 			int currentPage) {
 		
 		List<House> houses=sessionFactory.getCurrentSession()
-				.createQuery("from House as h,District as d,House_Type as ht where h.district=:district and h.house_Type=:house_Type and d.id=:did and ht.id=:htid")
+				.createQuery("from House as h,District as d,House_Type as ht where h.district=:d.district and h.house_Type=:ht.house_Type and d.id=:did and ht.id=:htid")
 				.setParameter("house_Type", house_Type)
 				.setParameter("district", district)
 				.setParameter("htid", house_Type.getId())
@@ -111,6 +111,21 @@ public class HouseDaoImpl extends BaseDaoAdapter<House, Integer> implements Hous
 				.createQuery("select count(h) from House as h h.house_Type=:house_Type and h.district=:district")
 				.getSingleResult();
 		PageBean<House> pageBean=new PageBean<>(houses, totalPage, currentPage, size);
+		return pageBean;
+	}
+
+
+	@Override
+	public PageBean<House> findByPage(int page, int size) {
+		List<House> houses=sessionFactory.getCurrentSession()
+				.createQuery("from House as h order by h.pubDate desc")
+				.setFirstResult((page-1)*size)
+				.setMaxResults(size)
+				.getResultList();
+		int totalPage=sessionFactory.getCurrentSession()
+				.createQuery("select count(h) from House as h",Long.class)
+				.getSingleResult().intValue();
+		PageBean<House> pageBean=new PageBean<>(houses, totalPage, page, size);
 		return pageBean;
 	}
 

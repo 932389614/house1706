@@ -19,6 +19,8 @@ public interface HouseDao extends BaseDao<House, Integer> {
 	
 	PageBean<House> findHouseByAreaAndPrice(float minPrice,float maxPrice,int minArea,int maxArea,int size,int currentPage); 
 	
-	PageBean<House> findHouseByDistrictAndHouse_Type(District district,House_Type house_Type,int size,int currentPage); 
+	PageBean<House> findHouseByDistrictAndHouse_Type(District district,House_Type house_Type,int size,int currentPage);
+	
+	PageBean<House> findByPage(int page,int size);
 	
 }
