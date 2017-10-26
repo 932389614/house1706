@@ -40,15 +40,7 @@ public class UserController {
 	private UserService userService;
 	@Autowired
 	private HouseService houseService;
-	@GetMapping("/toIndex")
-	public String toIndex(@RequestParam(defaultValue="1")int page,@RequestParam
-			(defaultValue="10")int size,Model model) {
-		PageBean<House> hBean=houseService.listHousesByPage(page, size);
-		model.addAttribute("houseList", hBean.getDataModel());
-		model.addAttribute("totalPage", hBean.getTotalPage());
-		model.addAttribute("currentPage", hBean.getCurrentPage());
-		return "index";
-	}
+	
 
 	@GetMapping("/toLogin")
 	public ModelAndView toLogin(Model model) {

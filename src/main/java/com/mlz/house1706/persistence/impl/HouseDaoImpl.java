@@ -2,16 +2,19 @@ package com.mlz.house1706.persistence.impl;
 
 import java.util.List;
 
+
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mlz.house1706.domain.District;
 import com.mlz.house1706.domain.House;
 import com.mlz.house1706.domain.House_Type;
-
+import com.mlz.house1706.domain.SearchHouseParam;
 import com.mlz.house1706.persistence.HouseDao;
 import com.mlz.house1706.util.PageBean;
+import com.mlz.house1706.util.QueryBean;
 
 @Repository
 public class HouseDaoImpl extends BaseDaoAdapter<House, Integer> implements HouseDao {
@@ -127,6 +130,27 @@ public class HouseDaoImpl extends BaseDaoAdapter<House, Integer> implements Hous
 				.getSingleResult().intValue();
 		PageBean<House> pageBean=new PageBean<>(houses, totalPage, page, size);
 		return pageBean;
+	}
+
+
+	@Override
+	public PageBean<House> findByQueryAndPage(QueryBean queryBean, int page, int size) {
+		String hql=queryBean.getQueryString();
+		
+		Query query=sessionFactory.getCurrentSession().createQuery(hql,House.class);
+		List<Object> params=queryBean.getParameters();
+		for(int i=0;i<params.size();++i) {
+			query.setParameter(i, params.get(i));
+		}
+		System.out.println(query.toString());
+		List<House> dataModel=query.setFirstResult((page-1)*size).setMaxResults(size).getResultList();
+		
+		query=sessionFactory.getCurrentSession().createQuery(queryBean.getCountString());
+		for(int i=0;i<params.size();++i) {
+			query.setParameter(i, params.get(i));
+		}
+		int total=((Long)query.getSingleResult()).intValue();
+		return new PageBean<>(dataModel, total, page, size);
 	}
 
 

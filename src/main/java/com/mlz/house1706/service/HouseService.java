@@ -11,4 +11,6 @@ public interface HouseService {
 	boolean publishNewHouse(House house);
 	
 	PageBean<House> listHousesByPage(int page, int size);
+	
+	PageBean<House> searchHousesWithParamByPage(SearchHouseParam searchHouseParam,int page, int size);
 }

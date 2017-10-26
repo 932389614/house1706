@@ -15,11 +15,11 @@ public abstract class BaseDaoAdapter<E, K extends Serializable> implements BaseD
 	public SessionFactory sessionFactory;
 
 	protected BaseDaoAdapter() {
-		// ��ȡ�����͵ĸ���
+		
 		ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
-		// ͨ�������͵ĸ����ȡ��ʵ�����Ͳ�������
+		
 		entityType = (Class<E>) pt.getActualTypeArguments()[0];
-		// ��ȡ����������������
+		
 		entityName = entityType.getSimpleName();
 	}
 

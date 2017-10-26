@@ -4,9 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.UUID;
-
-import com.mysql.jdbc.AssertionFailedException;
-
 public class CommonUtil {
 	private CommonUtil() {
 		

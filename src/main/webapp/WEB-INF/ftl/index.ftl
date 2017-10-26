@@ -1,4 +1,4 @@
-锘�
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div id="navbar" class="wrap">
-			<form method="post" action="index.do" id='sform'>
+			<form method="post" action="searchHouse" id='sform'>
 				<div class="search clearfix">
 					<div class="fl">
 						<ul>
@@ -54,7 +54,7 @@
 						<ul>
 							<li class="first">价格</li>
 							<li>
-								<select name='house.price' id='price'>
+								<select name='price' id='price'>
 									<option value='不限'>不限</option>
 									<option value='0-600'>600元以下</option>
 									<option value='600-1000'>600元—1000元</option>
@@ -82,12 +82,12 @@
 					</div>
 					<div class="fl">
 						<ul>
-							<li class="first">鎴垮瀷</li>
+							<li class="first">房型</li>
 							<li>
-								<select name='house.house_Type.id' id='houseType'>
-									<option value='0'>涓嶉檺</option>
-									<#list houseTypeList as houseType>
-										<option value='${houseType.id}'>涓嶉檺</option>
+								<select name='house_Type.id' id='house_Type'>
+									<option value='0'>不限</option>
+									<#list houseTypeList as house_Type>
+										<option value='${house_Type.id}'>${house_Type.name}</option>
 									</#list>
 									
 								</select>
@@ -98,7 +98,7 @@
 						<ul>
 							<li class="first">面积</li>
 							<li>
-								<select name='house.area' id='area'>
+								<select name='area' id='area'>
 									<option value='不限'>不限</option>
 									<option value='0-40'>40以下</option>
 									<option value='40-80'>40-80</option>
@@ -111,7 +111,7 @@
 					</div>
 				</div>
 			</form>
-		</div>06666666666666
+		</div>
 		<div class="main wrap">
 			<table class="house-list">
 				<#list houseList as house>

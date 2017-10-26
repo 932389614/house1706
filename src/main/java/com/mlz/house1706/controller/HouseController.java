@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mlz.house1706.domain.House;
+import com.mlz.house1706.domain.SearchHouseParam;
 import com.mlz.house1706.domain.User;
 import com.mlz.house1706.dto.UserLoginDto;
 import com.mlz.house1706.service.HouseService;
@@ -27,6 +29,15 @@ public class HouseController {
 	@Autowired
 	HouseService houseService;
 	
+	@GetMapping("/toIndex")
+	public String toIndex(@RequestParam(defaultValue="1")int page,@RequestParam
+			(defaultValue="10")int size,Model model) {
+		PageBean<House> hBean=houseService.listHousesByPage(page, size);
+		model.addAttribute("houseList", hBean.getDataModel());
+		model.addAttribute("totalPage", hBean.getTotalPage());
+		model.addAttribute("currentPage", hBean.getCurrentPage());
+		return "index";
+	}
 	@GetMapping("/toPub")
 	public ModelAndView toPub() {
 		ModelAndView modelAndView=new ModelAndView();
@@ -62,7 +73,17 @@ public class HouseController {
 	
 	public PageBean<House> showHouses(@RequestParam(defaultValue="1")int page,@RequestParam
 			(defaultValue="10")int size){
-		return null;
-		
+		return null;		
+	}	
+	@PostMapping("/searchHouse")
+	public String searchHouse(SearchHouseParam searchHouseParam,@RequestParam(defaultValue="1")int page
+			,@RequestParam(defaultValue="10")int size,Model model){
+		PageBean<House> hBean=houseService.searchHousesWithParamByPage(searchHouseParam, page, size);
+		model.addAttribute("houseList", hBean.getDataModel());
+		model.addAttribute("totalPage", hBean.getTotalPage());
+		model.addAttribute("currentPage", hBean.getCurrentPage());
+		System.out.println(searchHouseParam.getMinArea());
+		return "index";		
 	}
+
 }
