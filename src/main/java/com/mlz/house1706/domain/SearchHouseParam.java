@@ -24,10 +24,10 @@ public class SearchHouseParam {
 		this.title = title;
 	}
 	public Float getMinPrice() {
-		return this.price.equals("涓嶉檺")?0f:Float.parseFloat(this.price.split("-")[0]);
+		return this.price.equals("不限")?0f:Float.parseFloat(this.price.split("-")[0]);
 	}
 	public Float getMaxPrice() {
-		return this.price.equals("涓嶉檺")?Float.MAX_VALUE:Float.parseFloat(this.price.split("-")[1]);		
+		return this.price.equals("不限")?Float.MAX_VALUE:Float.parseFloat(this.price.split("-")[1]);		
 	}
 	public void setPrice(String price) {
 		this.price = price;
@@ -39,10 +39,10 @@ public class SearchHouseParam {
 		this.house_Type = house_Type;
 	}
 	public Integer getMinArea() {
-		return this.area.equals("涓嶉檺")?0:Integer.parseInt(this.area.split("-")[0]);	
+		return this.area.equals("不限")?0:Integer.parseInt(this.area.split("-")[0]);	
 	}
 	public Integer getMaxArea() {
-		return this.area.equals("涓嶉檺")?Integer.MAX_VALUE:Integer.parseInt(this.area.split("-")[1]);
+		return this.area.equals("不限")?Integer.MAX_VALUE:Integer.parseInt(this.area.split("-")[1]);
 	}
 	public void setArea(String area) {
 		this.area = area;

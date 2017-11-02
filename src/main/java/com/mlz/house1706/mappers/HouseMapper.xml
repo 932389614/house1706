@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 接口完全限定名，将sql语句映射到接口  sql语句id与接口方法名一致，mybatis自动生成实现类-->
+<mapper namespace="com.mlz.house1706.mappers.HouseMapper">
+	
+</mapper>

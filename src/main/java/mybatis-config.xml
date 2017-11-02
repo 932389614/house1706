@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+ "http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>  
+	<!-- 类型别名 -->
+   <typeAliases>
+<!--    	<typeAlias alias="Student" type="com.mlz.mybatis.domain.Student"></typeAlias>
+   	<typeAlias alias="Acount" type="com.mlz.mybatis.domain.Acount"></typeAlias> -->
+   	<package name="com.mlz.house1706.domain"></package>
+   </typeAliases>   
+   
+   <!--  配置JDBC相关环境 -->
+    <environments default="development">  
+        <environment id="development">  
+            <transactionManager type="JDBC"/>  
+            <dataSource type="POOLED">  
+                <property name="driver" value="com.mysql.jdbc.Driver"/>  
+                <property name="url" value="jdbc:mysql://localhost:3306/mhrs"/>  
+                <property name="username" value="root"/>  
+                <property name="password" value="1234"/>  
+            </dataSource>  
+        </environment>  
+    </environments>  
+    <mappers>
+<!--     	<mapper resource="com/mlz/mappers/DeptMapper.xml" />
+    	<mapper resource="com/mlz/mappers/EmpMapper.xml" />
+    	<mapper resource="com/mlz/mappers/UserMapper.xml" /> -->
+    </mappers>
+</configuration>  

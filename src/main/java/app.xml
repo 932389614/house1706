@@ -39,7 +39,7 @@
 		<property name="hibernateProperties">
 			<value>
 				hibernate.dialect=org.hibernate.dialect.MySQL57Dialect
-				hibernate.show_sql=true
+				hibernate.show_sql=false
 				hibernate.format_sql=true
 				javax.persistence.validation.mode=none
 				<!-- 使用spring管理事务时不使用此配置
@@ -47,9 +47,21 @@
 			</value>
 		</property> 
 	</bean>	
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+		<property name="basePackage" value="com.mlz.house1706.mappers" />
+	</bean>
+	
 	<!-- spring事务管理器 -->
 	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager"/>

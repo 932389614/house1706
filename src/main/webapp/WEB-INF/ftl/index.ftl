@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>高大上租房网</title>
-		<link type="text/css" rel="stylesheet" href="css/style.css" />
+		<link type="text/css"/rel="stylesheet" href="css/style.css" />
 		<style type="text/css">
 			#headbar { position: relative; top: 35px; left: 300px; }
 			.count { display: inline-block; width: 25px; height: 25px; opacity: 0.7; background-color: black; position: relative; left: 60px; top: -40px; }
@@ -142,14 +142,14 @@
 			</table>
 			<div class="pager">
 				<ul>
-					<li class="current"><a href="toIndex?page=1">首页</a></li>
+					<li class="current"><a href="searchHouse?page=1">首页</a></li>
 					<#if currentPage gt 1>
-					<li><a href="toIndex?page=${currentPage - 1}">上一页</a></li>
+					<li><a href="searchHouse?page=${currentPage - 1}">上一页</a></li>
 					</#if>
 					<#if currentPage lt totalPage>
-					<li><a href="toIndex?page=${currentPage + 1}">下一页</a></li>
+					<li><a href="searchHouse?page=${currentPage + 1}">下一页</a></li>
 					</#if>
-					<li><a href="toIndex?page=${totalPage}">末页</a></li>
+					<li><a href="searchHouse?page=${totalPage}">末页</a></li>
 				</ul>
 				<span class="total">${currentPage}/${totalPage}页</span>
 			</div>
